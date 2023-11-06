@@ -26,7 +26,7 @@ create table Recarga(
 	DNI INT,
 	idTarjeta INT NOT NULL,
 	FechayHora DATETIME,
-	MontoRecargado INT,
+	MontoRecargado DECIMAL(7,2),
 	primary key (idRecarga),
 	foreign key (DNI) references Cliente (DNI),
 	foreign key (idTarjeta) references Tarjeta (idTarjeta)
