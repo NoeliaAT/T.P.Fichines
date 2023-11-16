@@ -7,6 +7,7 @@ public class Cliente
     public string Apellido { get; set; }
     public string Mail { get; set; }
     public Tarjeta Tarjeta { get; set; }
+    public decimal saldo {get; set; }
 
 // No esun tipo de dato primitivo (int) //
 

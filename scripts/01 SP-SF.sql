@@ -4,12 +4,12 @@ DELIMITER $$
 USE 5to_Fichines $$
 DROP PROCEDURE IF EXISTS altaFichin $$
 CREATE PROCEDURE altaFichin (unidFichin INT,
-							unnombre VARCHAR(45),
-							unlanzamiento INT,
-							unprecio DECIMAL(7,2))
+							unNombre VARCHAR(45),
+							unLanzamiento INT,
+							unPrecio DECIMAL(7,2))
 BEGIN
-	INSERT INTO Fichin (idFichin, nombre, lanzamiento, precio)
-				VALUES (unIdFichin, unnombre, unlanzamiento, unprecio);
+	INSERT INTO Fichin (idFichin, Nombre, lanzamiento, precio)
+				VALUES (unIdFichin, unnombre, unlanzamiento, unPrecio);
 END $$
 
 DELIMITER $$
