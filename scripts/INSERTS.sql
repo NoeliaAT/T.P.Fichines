@@ -11,4 +11,23 @@ SET FOREIGN_KEY_CHECKS=1;
 
 SELECT 'Rellenando T.P.Fichines' AS 'Estado';
 
- // hacer alta cliente y traer cliente//
+START TRANSACTION;
+
+
+
+CALL altaFichin(001, "Suggar", 2000, 30.50);
+CALL altaRecarga(12345, 2023-11-21 16:32:04, 49.70);
+CALL altaJuegaFichin(12345, 001, 2023-11-21 16:40:08, 30.50);
+CALL registrarCliente(12345, "Noelia", "Almaraz", "Noe@gmail", 54321, 50.30);
+
+
+
+CALL recaudaciónPara 
+
+CALL Gastos 
+
+
+
+
+
+-- hacer alta cliente y traer cliente//

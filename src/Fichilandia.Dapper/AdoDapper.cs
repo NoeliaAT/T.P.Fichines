@@ -47,8 +47,9 @@ public class AdoDapper : IAdo
             throw;
         }
     }
+}
 
-    #endregion
+#endregion
 
 #region AltaFichin
 

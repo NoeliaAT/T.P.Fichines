@@ -1,46 +1,90 @@
-using System.Data;
 using Fichilandia.Core;
+using Fichilandia.Dapper;
+
+
+namespace Fichilandia.Test;
+public class TestAdoCliente : TestAdo
+{
+    [Theory]
+    [InlineData(12345, "nombre", "apellido", "mail", 12 )] // poner numero de tarjeta y de DNI//
+
+    public void TraerClientes(int dni, string nombre, string apellido, string mail, Tarjeta tarjeta)
+    {
+    var cliente = Ado.registraCliente(dni);
+
+    Assert.NotNull(cliente);
+    Assert.Equal(nombre, cliente.Nombre);
+    Assert.Equal<uint>(dni, cliente.DNI);
+    }
+
+    [Theory]
+    [InlineData(10, "NoExisto")]
+    [InlineData(11, "yoTampoco")]
+    public void ClientesNoExisten(uint dni, string nombre)
+    {
+        var Cliente = Ado.Cliente(dni, nombre);
+
+        Assert.Null(cliente);
+    }
+    [Fact]
+    public void AltaCliente()
+{
+    
+}
+}
+// usar test ado cajero como ejemplo //
+
 using Super.Core;
 
 namespace Super.Test;
-public class TestAdoCategoria : TestAdo
+public class TestAdoCajero : TestAdo
 {
-    [Fact]
-    public void TraerClientes()
+    [Theory]
+    [InlineData(100,"Pepe", "zapatos")]
+    [InlineData(90,"Moni", "cafecito")]
+    public void TraerCajero(uint dni, string nombre, string pass)
     {
-        var clientes = Ado.ObtenerClientes();
+        var cajero = Ado.CajeroPorPass(dni, pass);
 
-        Assert.NotEmpty(clientes);
-        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
-        Assert.Contains(clientes, c => c.Nombre == "Gaseosa");
-        Assert.Contains(clientes, c => c.Nombre == "Lacteo");
+        Assert.NotNull(cajero);
+        Assert.Equal(nombre, cajero.Nombre);
+        Assert.Equal<uint>(dni, cajero.Dni);
+    }
+
+    [Theory]
+    [InlineData(10, "NoExisto")]
+    [InlineData(11, "yoTampoco")]
+    public void CajerosNoExisten(uint dni, string pass)
+    {
+        var cajero = Ado.CajeroPorPass(dni, pass);
+
+        Assert.Null(cajero);
     }
     [Fact]
-    /// <summary>
-    /// Este test fallará porque la categoria gaseosa ya existe y viola la constraint de unique en nombre de categoria.
-    /// </summary>
-    public void AltaCategoriaFalla()
+    public void AltaCajero()
     {
-        var gaseosa = new Categoria()
+        uint dni = 1000;
+        string pass = "123456";
+        string nombre = "Nuevo";
+        string apellido = "Gonzales";
+
+        var cajero = Ado.CajeroPorPass(dni, pass);
+
+        Assert.Null(cajero);
+
+        var nuevoGonzales = new Cajero()
         {
-            Nombre = "Gaseosa"
+            Dni = dni,
+            Nombre = nombre,
+            Apellido = apellido
         };
 
-        var excep = Assert.Throws<ConstraintException>(() => Ado.AltaCategoria(gaseosa));
-        Assert.Contains("ya se encuentra en uso", excep.Message);
-    }
-    [Fact]
-    public void AltaCategoria()
-    {
-        var almacen = new Categoria()
-        {
-            Nombre = "Almacen"
-        };
+        Ado.AltaCajero(nuevoGonzales, pass);
 
-        Assert.Equal(0, almacen.IdCategoria);
+        var mismoCajero = Ado.CajeroPorPass(dni, pass);
         
-        Ado.AltaCategoria(almacen);
-        
-        Assert.NotEqual(0, almacen.IdCategoria);
+        Assert.NotNull(mismoCajero);
+        Assert.Equal(nombre, mismoCajero.Nombre);
+        Assert.Equal(apellido, mismoCajero.Apellido);
     }
 }
