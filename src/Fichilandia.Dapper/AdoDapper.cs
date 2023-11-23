@@ -15,77 +15,77 @@ public class AdoDapper : IAdo
     public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
 
 
-#region AltaCliente
+    #region Cliente
 
-    private static readonly string _queryAltaCliente
-        = "SELECT------------ ";
+        private static readonly string _queryAltaCliente
+            = "SELECT------------ ";
 
-    public void AltaCliente(Cliente cliente)
-    {
-        //Preparo los parametros del Stored Procedure
-        var parametros = new DynamicParameters();
-        parametros.Add("@unDNI", cliente.DNI);
-        parametros.Add("@unnombre", cliente.Nombre);
-        parametros.Add("@unapellido", cliente.Apellido);
-        parametros.Add("@unMail", cliente.Mail);
-        parametros.Add("@unatarjeta", cliente.Tarjeta);
-        parametros.Add("@unsaldo", cliente.saldo);
-
-        try
+        public void AltaCliente(Cliente cliente)
         {
-            _conexion.Execute("registraCliente", parametros);
+            //Preparo los parametros del Stored Procedure
+            var parametros = new DynamicParameters();
+            parametros.Add("@unDNI", cliente.DNI);
+            parametros.Add("@unnombre", cliente.Nombre);
+            parametros.Add("@unapellido", cliente.Apellido);
+            parametros.Add("@unMail", cliente.Mail);
+            parametros.Add("@unatarjeta", cliente.Tarjeta);
+            parametros.Add("@unsaldo", cliente.saldo);
 
-            //Obtengo el valor de parametro de tipo salida
-            cliente.DNI = parametros.Get<byte>("unDNI");
-        }
-        catch (MySqlException e)
-        {
-            if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
+            try
             {
-                throw new ConstraintException(cliente.Nombre + " ya se encuentra en uso.");
+                _conexion.Execute("registraCliente", parametros);
+
+                //Obtengo el valor de parametro de tipo salida
+                cliente.DNI = parametros.Get<byte>("unDNI");
             }
-            throw;
-        }
-    }
-}
-
-#endregion
-
-#region AltaFichin
-
-    private static readonly string _queryAltaFichin
-        = "SELECT------------ ";
-
-    public void AltaFichin(Fichin fichin)
-    {
-        //preparo los parametros del Stored Procedure
-        var parametros = new DynamicParameters();
-        parametros.Add("@unidFichin",fichin.IdFichin);
-        parametros.Add("@unNombre", fichin.Nombre);
-        parametros.Add("@unLanzamiento", fichin.Lanzamiento);
-        parametros.Add("@unPrecio", fichin.Precio);
-
-        try
-        {
-            _conexion.Execute("altaFichin", parametros);
-
-            //Obtengo el valor de parametro de tipo salida
-            fichin.IdFichin = parametros.Get<byte>("unidFichin");
-        }
-        catch (MySqlException e)
-        {
-            if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
+            catch (MySqlException e)
             {
-                throw new ConstraintException(fichin.Nombre + "ya se encuentra en uso.");
+                if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
+                {
+                    throw new ConstraintException(cliente.Nombre + " ya se encuentra en uso.");
+                }
+                throw;
             }
         }
-    }
+
+
+    #endregion
+
+    #region AltaFichin
+
+        private static readonly string _queryAltaFichin
+            = "SELECT------------ ";
+
+        public void AltaFichin(Fichin fichin)
+        {
+            //preparo los parametros del Stored Procedure
+            var parametros = new DynamicParameters();
+            parametros.Add("@unidFichin",fichin.IdFichin);
+            parametros.Add("@unNombre", fichin.Nombre);
+            parametros.Add("@unLanzamiento", fichin.Lanzamiento);
+            parametros.Add("@unPrecio", fichin.Precio);
+
+            try
+            {
+                _conexion.Execute("altaFichin", parametros);
+
+                //Obtengo el valor de parametro de tipo salida
+                fichin.IdFichin = parametros.Get<byte>("unidFichin");
+            }
+            catch (MySqlException e)
+            {
+                if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
+                {
+                    throw new ConstraintException(fichin.Nombre + "ya se encuentra en uso.");
+                }
+            }
+        }
 
 
 
-#endregion
+    #endregion
 
-#region AltaRecarga
+    #region AltaRecarga
 
     private static readonly string _queryAltaRecarga
         = "SELECT------------ ";
@@ -117,3 +117,4 @@ public class AdoDapper : IAdo
     }
 
 #endregion
+}

@@ -1,7 +1,7 @@
 using Fichilandia.Core;
 using Fichilandia.Dapper;
 
-namespace Super.Test;
+namespace Fichilandia.Test;
 /// <summary>
 /// El objetivo de esta clase es brindar una instancia de Ado para los test
 /// </summary>
