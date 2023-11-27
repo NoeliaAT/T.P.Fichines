@@ -8,7 +8,8 @@ public class TestAdoCliente : TestAdo
 
     public void TraerCliente(int dni, string nombre, string apellido)
     {
-        var cliente = Ado.AltaCliente(dni);
+    // instanciar cliente (como si fuese un objeto?)
+        Ado.AltaCliente(cliente);
 
         Assert.NotNull(cliente);
         Assert.Equal(nombre, cliente.Nombre);
@@ -24,7 +25,7 @@ public class TestAdoCliente : TestAdo
         string apellido = "Terrazas";
         string mail = "@mail";
 
-        var cliente = Ado.AltaCliente(dni);
+        Ado.AltaCliente(cliente);
 
         Assert.Null(cliente);
 
@@ -32,7 +33,7 @@ public class TestAdoCliente : TestAdo
 
         Ado.AltaCliente(nuevoTerrazas);
 
-        var mismoCliente = Ado.AltaCliente(dni);
+        var mismoCliente = Ado.AltaCliente(Cliente);
 
         Assert.NotNull(mismoCliente);
         Assert.Equal(nombre, mismoCliente.Nombre);
