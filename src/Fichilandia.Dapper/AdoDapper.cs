@@ -117,4 +117,36 @@ public class AdoDapper : IAdo
     }
 
 #endregion
+
+    #region AltaTarjeta 
+
+        private static readonly string queryAltaTarjeta
+            = "SELECT------------ "; 
+        
+        public void AltaTarjeta(Tarjeta tarjeta)
+        {
+            //preparo los parametros del stored procedure
+            var parametros = new DynamicParameters();
+            parametros.Add("@unidTarjeta", tarjeta.IdTarjeta);
+            parametros.Add("@unsaldo", tarjeta.Saldo);
+
+            try
+            {
+                _conexion.Execute("registraTarjeta", parametros);
+
+                // obtengo el valor de parametro de tipo salida
+                tarjeta.IdTarjeta = parametros.Get<byte>("unidTarjeta");
+            }
+            catch (MySqlException e)
+            {
+                if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
+                {
+                    throw new ConstraintException(tarjeta.IdTarjeta + "ya se encuentra en uso");
+                }
+                throw;
+            }
+        }
+
+#endregion
+
 }

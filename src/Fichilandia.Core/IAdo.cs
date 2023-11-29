@@ -8,4 +8,8 @@ public interface IAdo
     //List<Recarga> ObtenerRecargas();
     void AltaCliente(Cliente cliente);
     //List<Cliente> ObtenerClientes();
+
+    void AltaTarjeta(Tarjeta tarjeta);
+    // List<Tarjeta> ObtenerTarjetas();
+
 }

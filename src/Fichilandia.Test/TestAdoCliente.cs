@@ -20,18 +20,21 @@ public class TestAdoCliente : TestAdo
 
     public void AltaCliente()
     {
-        uint dni = 12345;
+        int dni = 12345;
         string nombre = "nuevo";
         string apellido = "Terrazas";
         string mail = "@mail";
 
-        Ado.AltaCliente(cliente);
+// esto es instanciar
+        var terrazas = new Cliente()
+        {
+            DNI = dni,
+            Nombre = nombre,
+            Apellido = apellido,
+            Mail = mail
+        };
 
-        Assert.Null(cliente);
-
-        var nuevoTerrazas = new Cliente(dni, nombre, apellido, mail);
-
-        Ado.AltaCliente(nuevoTerrazas);
+        Ado.AltaCliente(terrazas);
 
         var mismoCliente = Ado.AltaCliente(Cliente);
 
@@ -42,3 +45,4 @@ public class TestAdoCliente : TestAdo
     }
 }
 // usar test ado cajero como ejemplo //
+
