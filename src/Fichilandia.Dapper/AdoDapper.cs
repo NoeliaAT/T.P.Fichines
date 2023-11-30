@@ -120,10 +120,27 @@ public class AdoDapper : IAdo
 
     #region AltaTarjeta 
 
-        private static readonly string queryAltaTarjeta
-            = "SELECT------------ "; 
-        
-        public void AltaTarjeta(Tarjeta tarjeta)
+    private static readonly string _queryTarjetas
+        = @"SELECT  idTarjeta, saldo
+            FROM    Tarjeta";
+    
+    private static readonly string _queryTarjeta
+        // TODO fijarse que mapee bien todos los atributos
+        = @"SELECT *
+            FROM    Tarjeta
+            WHERE   idTarjeta = @id;
+            
+            SELECT Tarjeta.idTarjeta
+            FROM    Tarjeta
+            JOIN    Cliente USING (idTarjeta)
+            WHERE   idTarjeta = @id";
+
+    public List<Tarjeta> ObtenerTarjetas()
+        =>  _conexion.Query<Tarjeta>(_queryTarjetas).
+            ToList();
+
+
+    public void AltaTarjeta(Tarjeta tarjeta)
         {
             //preparo los parametros del stored procedure
             var parametros = new DynamicParameters();

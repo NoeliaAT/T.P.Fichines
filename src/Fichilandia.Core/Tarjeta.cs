@@ -10,4 +10,8 @@ public class Tarjeta
         this.IdTarjeta = idTarjeta;
         this.Saldo = saldo;
     }
+
+    public Tarjeta()
+    {
+    }
 }

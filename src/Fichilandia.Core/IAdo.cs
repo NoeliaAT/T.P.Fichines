@@ -10,6 +10,5 @@ public interface IAdo
     //List<Cliente> ObtenerClientes();
 
     void AltaTarjeta(Tarjeta tarjeta);
-    // List<Tarjeta> ObtenerTarjetas();
-
+    List<Tarjeta> ObtenerTarjetas();
 }

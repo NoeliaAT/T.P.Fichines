@@ -6,38 +6,30 @@ public class TestAdoTarjeta : TestAdo
 {
     [Theory]
     [InlineData(01, 10.50)]
-    public void LlevarTarjeta(int idTarjeta, decimal saldo)
+
+    public void TraerListaTarjeta(int idTarjeta, decimal saldo)
     {
-        Ado.AltaTarjeta(Tarjeta);
+        var tarjetas = Ado.ObtenerTarjetas();
 
-        Assert.NotNull(tarjeta);
-        Assert.Equal(saldo, tarjeta.Saldo);
-    }
-
-    [Theory]
-    [InlineData(10, "NoExisto")]
-    [InlineData(11, "yoTampoco")]
-    public void TarjetasNoExisten(int idTarjeta, decimal saldo)
-    {
-        var tarjeta = Ado.CajeroPorPass(dni, pass);
-
-        Assert.Null(cajero);
+        Assert.NotEmpty(tarjetas);
+        Assert.Contains(saldo, tarjetas.Saldo);
     }
 
     [Fact]
 
     public void AltaTarjeta()
     {
-        int idTarjeta = 01;
-        decimal saldo = 10.50;
+        int idTarjeta = 02;
+        decimal saldo = 10;
 
-        var nuevaTarjeta = new Tarjeta()
+        //esto es instanciar//
+        var nueva02 = new Tarjeta()
         {
             IdTarjeta = idTarjeta,
             Saldo = saldo
         };
 
-        Ado.AltaTarjeta(nuevaTarjeta);
+        Ado.AltaTarjeta(nueva02);
 
         var mismaTarjeta = Ado.AltaTarjeta(Tarjeta);
 
@@ -45,81 +37,15 @@ public class TestAdoTarjeta : TestAdo
         Assert.Equal(idTarjeta, mismaTarjeta.IdTarjeta);
         Assert.Equal(saldo, mismaTarjeta.Saldo);
     }
-}
-
-////////////
-
-    [Theory]
-    [InlineData(100,"Pepe", "zapatos")]
-    [InlineData(90,"Moni", "cafecito")]
-    public void TraerCajero(uint dni, string nombre, string pass)
-    {
-        var cajero = Ado.CajeroPorPass(dni, pass);
-
-        Assert.NotNull(cajero);
-        Assert.Equal(nombre, cajero.Nombre);
-        Assert.Equal<uint>(dni, cajero.Dni);
-    }
-
-    [Theory]
-    [InlineData(10, "NoExisto")]
-    [InlineData(11, "yoTampoco")]
-    public void CajerosNoExisten(uint dni, string pass)
-    {
-        var cajero = Ado.CajeroPorPass(dni, pass);
-
-        Assert.Null(cajero);
-    }
     [Fact]
-
-
-
-
-
-
-
-
-
-    public void TraerCliente(int dni, string nombre, string apellido)
+    public void LlevarTarjeta(int idTarjeta, decimal saldo)
     {
-    // instanciar cliente (como si fuese un objeto?)
-        Ado.AltaCliente(cliente);
+        Ado.AltaTarjeta(tarjeta);
 
-        Assert.NotNull(cliente);
-        Assert.Equal(nombre, cliente.Nombre);
-        Assert.Equal<uint>(dni, cliente.DNI);
-    }
-
-    [Fact]
-
-    public void AltaCliente()
-    {
-        int dni = 12345;
-        string nombre = "nuevo";
-        string apellido = "Terrazas";
-        string mail = "@mail";
-
-// esto es instanciar
-        var terrazas = new Cliente()
-        {
-            DNI = dni,
-            Nombre = nombre,
-            Apellido = apellido,
-            Mail = mail
-        };
-
-        Ado.AltaCliente(terrazas);
-
-        var mismoCliente = Ado.AltaCliente(Cliente);
-
-        Assert.NotNull(mismoCliente);
-        Assert.Equal(nombre, mismoCliente.Nombre);
-        Assert.Equal(apellido, mismoCliente.Apellido);
-        Assert.Equal(mail, mismoCliente.Mail);
+        Assert.NotNull(tarjeta);
+        Assert.Equal(saldo, tarjeta.Saldo);
     }
 }
-// usar test ado cajero como ejemplo //
-
 
 
 
