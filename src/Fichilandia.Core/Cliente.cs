@@ -19,6 +19,7 @@ public class Cliente
         this.Mail = mail;
         this.Tarjeta = tarjeta;
     }
+
 }
 
 // la cliente le manda mensaje a la tarjeta //

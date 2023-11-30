@@ -9,11 +9,10 @@ public class TestAdoCliente : TestAdo
     public void TraerCliente(int dni, string nombre, string apellido)
     {
     // instanciar cliente (como si fuese un objeto?)
-        Ado.AltaCliente(cliente);
+        var clientes = Ado.TraerCliente();
 
-        Assert.NotNull(cliente);
-        Assert.Equal(nombre, cliente.Nombre);
-        Assert.Equal<uint>(dni, cliente.DNI);
+        Assert.NotNull(clientes);
+        Assert.Contains(clientes, c => c.DNI == 12345 && c.Nombre == "Nombre" && c.Apellido == "Almaraz");
     }
 
     [Fact]

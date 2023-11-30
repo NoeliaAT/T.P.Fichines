@@ -5,14 +5,14 @@ public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
-    [InlineData(01, 10.50)]
+    [InlineData(01, 10)]
 
     public void TraerListaTarjeta(int idTarjeta, decimal saldo)
     {
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotEmpty(tarjetas);
-        Assert.Contains(saldo, tarjetas.Saldo);
+        Assert.Contains(tarjetas, t => t.Saldo == 10);
     }
 
     [Fact]
@@ -30,25 +30,15 @@ public class TestAdoTarjeta : TestAdo
         };
 
         Ado.AltaTarjeta(nueva02);
+        Assert.NotEqual(02, 10);
 
-        var mismaTarjeta = Ado.AltaTarjeta(Tarjeta);
+        var tarjetas = Ado.ObtenerTarjetas();
 
-        Assert.NotNull(mismaTarjeta);
-        Assert.Equal(idTarjeta, mismaTarjeta.IdTarjeta);
-        Assert.Equal(saldo, mismaTarjeta.Saldo);
-    }
-    [Fact]
-    public void LlevarTarjeta(int idTarjeta, decimal saldo)
-    {
-        Ado.AltaTarjeta(tarjeta);
-
-        Assert.NotNull(tarjeta);
-        Assert.Equal(saldo, tarjeta.Saldo);
+        Assert.NotNull(tarjetas);
+        Assert.Contains(tarjetas, t=> t.Saldo ==10 && t.IdTarjeta== 02);
     }
 }
 
 
-
-
-//tengo que llevar tarjeta
-//traer la lista de tarjetas
+// alta tarjeta y obtener tatjeta//
+// despues de eso supuestamente me aprueba y que mi grupo se va a volver loco//

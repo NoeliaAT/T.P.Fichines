@@ -136,7 +136,8 @@ public class AdoDapper : IAdo
             WHERE   idTarjeta = @id";
 
     public List<Tarjeta> ObtenerTarjetas()
-        =>  _conexion.Query<Tarjeta>(_queryTarjetas).
+        =>  _conexion.Query<Tarjeta>
+            (_queryTarjetas).
             ToList();
 
 
