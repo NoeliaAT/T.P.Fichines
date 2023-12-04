@@ -1,18 +1,16 @@
 using Fichilandia.Core;
 namespace Fichilandia.Test;
-
 public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
     [InlineData(01, 10)]
-
-    public void TraerListaTarjeta(int idTarjeta, decimal saldo)
+    public void TraerTarjeta(int idTarjeta, decimal saldo)
     {
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotEmpty(tarjetas);
-        Assert.Contains(tarjetas, t => t.Saldo == 10);
+        Assert.Contains(tarjetas, t => t.Saldo == 10 && t.IdTarjeta == 01);
     }
 
     [Fact]
@@ -39,6 +37,4 @@ public class TestAdoTarjeta : TestAdo
     }
 }
 
-
-// alta tarjeta y obtener tatjeta//
-// despues de eso supuestamente me aprueba y que mi grupo se va a volver loco//
+// alta tarjeta y obtener tarjeta//

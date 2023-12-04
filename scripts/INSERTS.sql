@@ -22,12 +22,4 @@ CALL registrarCliente(12345, "Noelia", "Almaraz", "Noe@gmail", 54321, 50.30);
 
 
 
-CALL recaudaciónPara 
-
-CALL Gastos 
-
-
-
-
-
 -- hacer alta cliente y traer cliente//

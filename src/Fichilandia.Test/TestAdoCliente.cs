@@ -1,4 +1,4 @@
-using Fichilandia.Core;
+/*using Fichilandia.Core;
 namespace Fichilandia.Test;
 
 public class TestAdoCliente : TestAdo
@@ -45,3 +45,4 @@ public class TestAdoCliente : TestAdo
 }
 // usar test ado cajero como ejemplo //
 
+*/

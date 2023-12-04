@@ -55,7 +55,6 @@ END $$
 
 -- Ya no existe.
 
-
 -- 4) Se pide hacer el SF ‘RecaudacionPara’ que reciba por parámetro un identificador de fichin, se debe devolver la ganancia que tuvo entre esas 2 fechas (inclusive).--
 
 DELIMITER $$
