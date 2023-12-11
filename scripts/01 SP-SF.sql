@@ -13,6 +13,15 @@ BEGIN
 END $$
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS altaTarjeta $$
+CREATE PROCEDURE altaTarjeta	(unidTarjeta INT,
+								unSaldo DECIMAL(7,2))
+BEGIN
+	INSERT INTO Tarjeta	(idTarjeta, Saldo)
+				VALUES	(unidTarjeta, unSaldo)
+END $$
+
+DELIMITER $$
 DROP PROCEDURE IF EXISTS altaRecarga $$
 CREATE PROCEDURE altaRecarga	(unDNI INT,
 								unaFechayHora DATETIME,
