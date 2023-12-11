@@ -27,9 +27,20 @@ create table Recarga(
 	idTarjeta INT NOT NULL,
 	FechayHora DATETIME,
 	MontoRecargado DECIMAL(7,2),
+	CONSTRAINT PK_Recarga PRIMARY KEY(DNI),
+	CONSTRAINT FK_
 	primary key (idRecarga),
 	foreign key (DNI) references Cliente (DNI),
 	foreign key (idTarjeta) references Tarjeta (idTarjeta)
+
+-- hacer estos cambios 
+-- usar esto de ejemplo
+
+CONSTRAINT PK_AutorTitulo PRIMARY KEY (idTitulo, idAutor),
+CONSTRAINT FK_Titulo_AutorTitulo FOREIGN KEY (idTitulo)
+	REFERENCES Titulo (idTitulo),
+CONSTRAINT FK_Autor_AutorTitulo FOREIGN KEY (idAutor)
+	REFERENCES Autor (idAutor)
 );
 create table JuegaFichin(
 	idJuegaFichin INT not null auto_increment,
@@ -43,4 +54,3 @@ create table JuegaFichin(
 	foreign key (idTarjeta) references Tarjeta (idTarjeta),
 	foreign key (idFichin) references Fichin (idFichin)
 );
-

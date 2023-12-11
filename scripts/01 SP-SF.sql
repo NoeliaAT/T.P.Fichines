@@ -18,28 +18,32 @@ CREATE PROCEDURE altaTarjeta	(unidTarjeta INT,
 								unSaldo DECIMAL(7,2))
 BEGIN
 	INSERT INTO Tarjeta	(idTarjeta, Saldo)
-				VALUES	(unidTarjeta, unSaldo)
+				VALUES	(unidTarjeta, unSaldo);
 END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaRecarga $$
-CREATE PROCEDURE altaRecarga	(unDNI INT,
+CREATE PROCEDURE altaRecarga	(unidRecarga INT,
+								unDNI INT,
+								unidTarjeta INT,
 								unaFechayHora DATETIME,
 								unMontoRecargado INT)
 BEGIN
-	INSERT INTO Recarga (DNI, FechayHora, MontoRecargado)
-				VALUES (unDNI, unaFechayHora, unMontoRecargado);
+	INSERT INTO Recarga (idRecarga, DNI, idTarjeta, FechayHora, MontoRecargado)
+				VALUES (unidTarjeta, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
 END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaJuegaFichin $$
-CREATE PROCEDURE altaJuegaFichin (unDNI INT,
+CREATE PROCEDURE altaJuegaFichin (unidJuegaFichin INT,
+								unDNI INT,
+								unidTarjeta INT,
 								unidFichin INT,
 								unFechayHora DATETIME,
 								unGasto DECIMAL(7,2))
 BEGIN
-	INSERT INTO JuegaFichin (DNI, idFichin, FechayHora, Gasto)
-					VALUES (unDNI, unidFichin, unFechayHora, unGasto);
+	INSERT INTO JuegaFichin (idJuegaFichin, DNI, idTarjeta, idFichin, FechayHora, Gasto)
+					VALUES (unidJuegaFichin, unDNI, unidTarjeta, unidFichin, unFechayHora, unGasto);
 END $$
 
 
@@ -52,10 +56,10 @@ CREATE PROCEDURE registrarCliente (unDNI INT,
 									unapellido VARCHAR(45),
 									unMail VARCHAR(45),
 									unatarjeta INT,
-									unsaldo DECIMAL(7,2))
+									unSaldo DECIMAL(7,2))
 BEGIN
-	INSERT INTO Cliente(DNI, nombre, apellido, Mail, tarjeta, saldo)
-				VALUES ( unDNI, unnombre, unapellido, unMail, untarjeta, unsaldo, unpassword);
+	INSERT INTO Cliente(DNI, nombre, apellido, Mail, tarjeta, Saldo)
+				VALUES ( unDNI, unnombre, unapellido, unMail, untarjeta, unSaldo, unpassword);
 	SELECT SHA2('password', 256);
 END $$
 

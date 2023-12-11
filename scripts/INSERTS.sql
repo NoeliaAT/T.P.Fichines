@@ -1,5 +1,5 @@
 DELIMITER ;
-USE T.P.Fichines;
+USE 5to_Fichines;
 SELECT 'Preparando para Inserts' AS 'Estado';
 SET FOREIGN_KEY_CHECKS=0;
 	TRUNCATE TABLE Fichin;
@@ -13,12 +13,10 @@ SELECT 'Rellenando T.P.Fichines' AS 'Estado';
 
 START TRANSACTION;
 
+	CALL altaFichin(001, "Suggar", 2000, 30.50);
+	CALL altaTarjeta(321, 5.5);
+	CALL altaRecarga(05, 12345, 321, '2023-11-21 16:32:04', 49.70);
+	CALL altaJuegaFichin(04, 12345, 321, 001, '2023-11-21 16:40:08', 30.50);
+	CALL registrarCliente(12345, "Noelia", "Almaraz", "Noe@gmail", 54321, 50.30);
 
-
-CALL altaFichin(001, "Suggar", 2000, 30.50);
-CALL altaRecarga(12345, '2023-11-21 16:32:04', 49.70);
-CALL altaJuegaFichin(12345, 001, '2023-11-21 16:40:08', 30.50);
-CALL registrarCliente(12345, "Noelia", "Almaraz", "Noe@gmail", 54321, 50.30);
-CALL altaTarjeta(12345, 5.5);
-
--- hacer alta cliente y traer cliente --
+COMMIT;
