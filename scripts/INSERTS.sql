@@ -15,8 +15,8 @@ START TRANSACTION;
 
 	CALL altaFichin(001, "Suggar", 2000, 30.50);
 	CALL altaTarjeta(321, 5.5);
-	CALL altaRecarga(05, 12345, 321, '2023-11-21 16:32:04', 49.70);
-	CALL altaJuegaFichin(04, 12345, 321, 001, '2023-11-21 16:40:08', 30.50);
-	CALL registrarCliente(12345, "Noelia", "Almaraz", "Noe@gmail", 54321, 50.30);
+	CALL altaRecarga(@idRecarga, @DniNoelia, 321, '2023-11-21 16:32:04', 49.70);
+	CALL altaJuegaFichin(@idJuegaFichin, @DniNoelia, 321, 001, '2023-11-21 16:40:08', 3000.50);
+	CALL registrarCliente(@DniNoelia, "Noelia", "Almaraz", "Noe@gmail", 54321);
 
 COMMIT;

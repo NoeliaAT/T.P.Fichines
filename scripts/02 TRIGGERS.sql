@@ -1,3 +1,6 @@
+SELECT 'Creando Triggers' AS 'Estado';
+
+
 -- 1) Realizar un trigger para que al dar de alta una fila en recarga, impacte automáticamente en el saldo del cliente. --
 
 DELIMITER $$

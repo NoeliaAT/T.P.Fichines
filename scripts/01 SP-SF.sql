@@ -1,3 +1,6 @@
+SELECT 'Dando de Alta' AS 'Estado';
+
+
 -- 1) Realizar los SP para dar de alta todas las entidades menos la tabla Cliente.--
 
 DELIMITER $$
@@ -33,6 +36,7 @@ BEGIN
 				VALUES (unidTarjeta, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
 END $$
 
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaJuegaFichin $$
 CREATE PROCEDURE altaJuegaFichin (unidJuegaFichin INT,
@@ -55,11 +59,10 @@ CREATE PROCEDURE registrarCliente (unDNI INT,
 									unnombre VARCHAR(45),
 									unapellido VARCHAR(45),
 									unMail VARCHAR(45),
-									unatarjeta INT,
-									unSaldo DECIMAL(7,2))
+									unatarjeta INT)
 BEGIN
-	INSERT INTO Cliente(DNI, nombre, apellido, Mail, tarjeta, Saldo)
-				VALUES ( unDNI, unnombre, unapellido, unMail, untarjeta, unSaldo, unpassword);
+	INSERT INTO Cliente(DNI, nombre, apellido, Mail, tarjeta)
+				VALUES ( unDNI, unnombre, unapellido, unMail, untarjeta, unpassword);
 	SELECT SHA2('password', 256);
 END $$
 
