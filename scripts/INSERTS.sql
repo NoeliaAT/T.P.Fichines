@@ -1,6 +1,6 @@
 DELIMITER ;
 USE 5to_Fichines;
-SELECT 'Preparando para Inserts' AS 'Estado';
+SELECT 'Preparando para Insertss' AS 'Estado';
 SET FOREIGN_KEY_CHECKS=0;
 	TRUNCATE TABLE Fichin;
 	TRUNCATE TABLE Cliente;
