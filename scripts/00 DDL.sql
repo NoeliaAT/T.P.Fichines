@@ -49,3 +49,4 @@ create table JuegaFichin(
 	CONSTRAINT FK_JuegaFichin_Fichin FOREIGN KEY (idFichin)
 	REFERENCES Fichin (idFichin)
 );
+

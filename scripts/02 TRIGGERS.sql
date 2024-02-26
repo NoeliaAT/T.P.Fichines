@@ -14,13 +14,9 @@ CREATE TRIGGER ActualizarSaldo AFTER INSERT ON Recarga
 FOR EACH ROW
 BEGIN
     UPDATE Cliente
-    SET Saldo = SUM (Saldo + NEW.MontoRecargado)
-    WHERE ;
+    SET Saldo = Saldo + NEW.MontoRecargado
+    WHERE Recarga.idRecarga = NEW.idRecarga;
 END $$
-
--- UPDATE Cliente WHERE --
--- SET Saldo = SUM (OLD.Saldo + NEW.MontoRecargado) --
---creo que me olvidé de la condición--
 
 
 -- 2) Realizar un trigger para que al momento de hacer un gasto en el saldo del cliente, se verifique que tenga el saldo necesario para ese gasto; en caso contrario se debe mostrar la leyenda ‘Saldo insuficiente’ y no permitir la operación. --
@@ -28,12 +24,11 @@ END $$
 
 DELIMITER $$
 DROP TRIGGER IF EXISTS GastoSaldo $$
-CREATE TRIGGER GastoSaldo BEFORE UPDATE ON Tarjeta
+CREATE TRIGGER GastoSaldo BEFORE INSERT ON JuegaFichin
 FOR EACH ROW
 BEGIN
-    IF (OLD.Saldo < NEW.Gasto) THEN --no es "Gasto" a secas, NEW-OLD --
+    IF (Saldo < NEW.Gasto) THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Saldo insuficiente';
     END IF;
 END $$
--- before insert en juega fichin --
