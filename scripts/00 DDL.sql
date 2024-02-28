@@ -19,6 +19,7 @@ create table Cliente(
 );
 create table Tarjeta(
 	idTarjeta INT not null auto_increment,
+	DNI INT UNSIGNED,
 	Saldo DECIMAL(7,2),
 	CONSTRAINT PK_Tarjeta PRIMARY KEY (idTarjeta)
 );

@@ -33,7 +33,7 @@ CREATE PROCEDURE altaRecarga	(unidRecarga INT,
 								unMontoRecargado INT)
 BEGIN
 	INSERT INTO Recarga (idRecarga, DNI, idTarjeta, FechayHora, MontoRecargado)
-				VALUES (unidTarjeta, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
+				VALUES (unidRecarga, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
 END $$
 
 

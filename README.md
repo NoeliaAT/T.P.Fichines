@@ -26,6 +26,7 @@ erDiagram
         Tarjeta{
 
             INT idTarjeta PK
+            INT_UNSIGNED DNI FK
             DECIMAL(7_2) Saldo
         }
         JuegaFichin{
