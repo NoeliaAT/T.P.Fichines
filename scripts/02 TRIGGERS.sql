@@ -36,4 +36,4 @@ BEGIN
     SET MESSAGE_TEXT = 'Saldo insuficiente';
     END IF;
 END $$
-escribe un codigo en mysql con la  siguiente  informacion: 
+
