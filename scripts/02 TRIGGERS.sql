@@ -13,7 +13,7 @@ FOR EACH ROW
 BEGIN
     UPDATE Tarjeta
     SET Saldo = Saldo + NEW.MontoRecargado
-    WHERE idRecarga = NEW.idRecarga;
+    WHERE idTarjeta = NEW.idTarjeta;
 END $$
 
 
@@ -29,11 +29,8 @@ FOR EACH ROW
 BEGIN
     IF (EXISTS (SELECT Saldo
                 FROM Tarjeta
-                INNER JOIN JuegaFichin ON Tarjeta.idTarjeta = JuegaFichin.idTarjeta
-                INNER JOIN Tarjeta ON Cliente.idtarjeta = Tarjeta.idTarjeta
                 WHERE Saldo < NEW.Gasto))THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Saldo insuficiente';
     END IF;
 END $$
-

@@ -4,7 +4,7 @@ public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
-    [InlineData(01, 10)]
+    [InlineData(321, 37)]
     public void TraerTarjeta(int idTarjeta, decimal saldo)
     {
         var tarjetas = Ado.ObtenerTarjetas();

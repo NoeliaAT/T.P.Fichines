@@ -34,7 +34,7 @@ CREATE PROCEDURE altaRecarga	(unidRecarga INT,
 BEGIN
 	INSERT INTO Recarga (idRecarga, DNI, idTarjeta, FechayHora, MontoRecargado)
 				VALUES (unidRecarga, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
-END $$
+END $$ 
 
 
 DELIMITER $$
@@ -59,16 +59,17 @@ CREATE PROCEDURE registrarCliente (unDNI INT,
 									unnombre VARCHAR(45),
 									unapellido VARCHAR(45),
 									unMail VARCHAR(45),
-									unatarjeta INT)
+									unatarjeta INT,
+									unaPass VARCHAR(45))
 BEGIN
-	INSERT INTO Cliente(DNI, nombre, apellido, Mail, tarjeta)
-				VALUES ( unDNI, unnombre, unapellido, unMail, untarjeta, unpassword);
-	SELECT SHA2('password', 256);
+	SELECT DNI, nombre, apellido
+	FROM Cliente
+	WHERE DNI = unDNI
+	AND pass = SHA2(unaPAss, 256);
 END $$
 
 
 -- 3) Se pide hacer el SP ‘clientePorDniPass’ que reciba un dni y contraseña (no encriptada), el SP tiene que devolver la fila correspondiente al cliente en caso de que concuerden dni y pass con los datos almacenados en la BD, caso contrario devuelve NULL.--
-
 -- Ya no existe.
 
 -- 4) Se pide hacer el SF ‘RecaudacionPara’ que reciba por parámetro un identificador de fichin, se debe devolver la ganancia que tuvo entre esas 2 fechas (inclusive).--

@@ -16,9 +16,6 @@ START TRANSACTION;
 	CALL altaFichin(1, "Suggar", 2000, 30.50);
 	CALL altaTarjeta(321, 5.5);
 	CALL altaRecarga(@idRecarga, @DniNoelia, 321, '2023-11-21 16:32:04', 31.50);
-	CALL altaJuegaFichin(@idJuegaFichin, @DniNoelia, 321, 001, '2023-11-21 16:40:08', 30.50);
-	-- tiene error --
-	CALL registrarCliente(@DniNoelia, "Noelia", "Almaraz", "Noe@gmail", 54321);
-	-- tiene error --
-
+	CALL altaJuegaFichin(@idJuegaFichin, @DniNoelia, 321, 1, '2023-11-21 16:40:08', 30.50);
+	CALL registrarCliente(@DniNoelia, "Noelia", "Almaraz", "Noe@gmail", 54321, 256);
 COMMIT;

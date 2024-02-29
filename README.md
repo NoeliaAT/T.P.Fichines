@@ -13,7 +13,7 @@ erDiagram
             Varchar(45) nombre 
             Varchar(45) apellido 
             Varchar(45) Mail 
-            INT idTarjeta 
+            INT idTarjeta FK 
         }
         Recarga{
             

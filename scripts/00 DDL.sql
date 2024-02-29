@@ -15,6 +15,7 @@ create table Cliente(
 	apellido Varchar(45),
 	Mail Varchar(45),
 	tarjeta INT,
+	pass CHAR(64) NOT NULL,
 	CONSTRAINT PK_Cliente PRIMARY KEY (DNI)
 );
 create table Tarjeta(
