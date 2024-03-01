@@ -16,6 +16,7 @@ BEGIN
     WHERE idTarjeta = NEW.idTarjeta;
 END $$
 
+-- aqui esta el error--
 
 -- 2) Realizar un trigger para que al momento de hacer un gasto en el saldo del cliente, 
 -- se verifique que tenga el saldo necesario para ese gasto; 
