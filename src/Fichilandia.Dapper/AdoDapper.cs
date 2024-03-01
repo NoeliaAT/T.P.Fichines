@@ -150,16 +150,16 @@ public class AdoDapper : IAdo
 
             try
             {
-                _conexion.Execute("registraTarjeta", parametros);
+                _conexion.Execute("altaTarjeta", parametros);
 
                 // obtengo el valor de parametro de tipo salida
-                tarjeta.IdTarjeta = parametros.Get<byte>("unidTarjeta");
+                tarjeta.IdTarjeta = parametros.Get<int>("unidTarjeta");
             }
             catch (MySqlException e)
             {
                 if (e.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
                 {
-                    throw new ConstraintException(tarjeta.IdTarjeta + "ya se encuentra en uso");
+                    throw new ConstraintException("La IdTarjeta:"+tarjeta.IdTarjeta + " ya se encuentra en uso");
                 }
                 throw;
             }
