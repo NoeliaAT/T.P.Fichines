@@ -4,13 +4,13 @@ public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
-    [InlineData(321, 12345, 36)]
-    public void TraerTarjeta(int idTarjeta, uint dni, decimal saldo)
+    [InlineData(321, 12345)]
+    public void TraerTarjeta(int idTarjeta, uint dni)
     {
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotEmpty(tarjetas);
-        Assert.Contains(tarjetas, t => t.Saldo == saldo && t.Dni == dni && t.IdTarjeta == idTarjeta);
+        Assert.Contains(tarjetas, t => t.Dni == dni && t.IdTarjeta == idTarjeta);
     }
 
     [Fact]

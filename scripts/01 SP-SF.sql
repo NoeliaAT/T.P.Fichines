@@ -52,7 +52,8 @@ BEGIN
 END $$
 
 
--- 2) Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.--
+-- 2) Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente.
+-- Es importante guardar encriptada la contraseña del cliente usando SHA256.--
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS registraCliente $$
@@ -63,10 +64,8 @@ CREATE PROCEDURE registrarCliente (unDni INT,
 									unatarjeta INT,
 									unaPass VARCHAR(45))
 BEGIN
-	SELECT Dni, nombre, apellido
-	FROM Cliente
-	WHERE Dni = unDni
-	AND pass = SHA2(unaPAss, 256);
+	INSERT INTO Cliente (Dni, nombre, apellido, Mail, tarjeta, Pass)
+				VALUES	(unDni, unnombre, unapellido, unMail, unatarjeta, SHA2(unapass, 256));
 END $$
 
 
