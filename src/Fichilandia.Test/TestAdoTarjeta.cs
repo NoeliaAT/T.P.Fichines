@@ -34,7 +34,7 @@ public class TestAdoTarjeta : TestAdo
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotNull(tarjetas);
-        Assert.Contains(tarjetas, t=> t.Saldo == saldo && t.Dni == dni && t.IdTarjeta== idTarjeta);
+        Assert.Contains(tarjetas, t=>  t.Dni == dni && t.Saldo == saldo &&t.IdTarjeta== idTarjeta);
     }
 }
 

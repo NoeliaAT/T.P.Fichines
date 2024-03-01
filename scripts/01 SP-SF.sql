@@ -18,16 +18,17 @@ END $$
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaTarjeta $$
 CREATE PROCEDURE altaTarjeta	(unidTarjeta INT,
+								unDni INT UNSIGNED,
 								unSaldo DECIMAL(7,2))
 BEGIN
-	INSERT INTO Tarjeta	(idTarjeta, Saldo)
-				VALUES	(unidTarjeta, unSaldo);
+	INSERT INTO Tarjeta	(idTarjeta, Dni, Saldo)
+				VALUES	(unidTarjeta, unDni, unSaldo);
 END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaRecarga $$
 CREATE PROCEDURE altaRecarga	(unidRecarga INT,
-								unDni INT,
+								unDni INT UNSIGNED,
 								unidTarjeta INT,
 								unaFechayHora DATETIME,
 								unMontoRecargado INT)
@@ -40,14 +41,14 @@ END $$
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaJuegaFichin $$
 CREATE PROCEDURE altaJuegaFichin (unidJuegaFichin INT,
-								unDNI INT,
+								unDni INT,
 								unidTarjeta INT,
 								unidFichin INT,
 								unFechayHora DATETIME,
 								unGasto DECIMAL(7,2))
 BEGIN
-	INSERT INTO JuegaFichin (idJuegaFichin, DNI, idTarjeta, idFichin, FechayHora, Gasto)
-					VALUES (unidJuegaFichin, unDNI, unidTarjeta, unidFichin, unFechayHora, unGasto);
+	INSERT INTO JuegaFichin (idJuegaFichin, Dni, idTarjeta, idFichin, FechayHora, Gasto)
+					VALUES (unidJuegaFichin, unDni, unidTarjeta, unidFichin, unFechayHora, unGasto);
 END $$
 
 
@@ -101,7 +102,7 @@ END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS Gastos $$
-CREATE PROCEDURE Gastos (unDni INT)
+CREATE PROCEDURE Gastos (unDni INT UNSIGNED)
 BEGIN
 	SELECT JuegaFichin.FechayHora, Fichin.nombre, JuegaFichin.Gasto
     FROM JuegaFichin
