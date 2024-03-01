@@ -121,7 +121,7 @@ public class AdoDapper : IAdo
     #region AltaTarjeta 
 
     private static readonly string _queryTarjetas
-        = @"SELECT  idTarjeta, saldo
+        = @"SELECT  idTarjeta, dni, saldo
             FROM    Tarjeta";
     
     private static readonly string _queryTarjeta
@@ -146,6 +146,7 @@ public class AdoDapper : IAdo
             //preparo los parametros del stored procedure
             var parametros = new DynamicParameters();
             parametros.Add("@unidTarjeta", tarjeta.IdTarjeta);
+            parametros.Add("@undni", tarjeta.Dni);
             parametros.Add("@unsaldo", tarjeta.Saldo);
 
             try

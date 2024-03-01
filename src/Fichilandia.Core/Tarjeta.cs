@@ -4,6 +4,7 @@ public class Tarjeta
 
     public int IdTarjeta { get; set; }
     public decimal Saldo { get; set; }
+    public uint Dni { get; set; }
 
     public Tarjeta (int idTarjeta, decimal saldo)
     {

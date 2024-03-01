@@ -10,7 +10,7 @@ create table Fichin(
 	CONSTRAINT PK_Fichin PRIMARY KEY (idFichin)
 );
 create table Cliente(
-	DNI INT UNSIGNED,
+	Dni INT UNSIGNED,
 	nombre Varchar(45),
 	apellido Varchar(45),
 	Mail Varchar(45),
@@ -20,13 +20,13 @@ create table Cliente(
 );
 create table Tarjeta(
 	idTarjeta INT not null auto_increment,
-	DNI INT UNSIGNED,
+	Dni INT UNSIGNED,
 	Saldo DECIMAL(7,2),
 	CONSTRAINT PK_Tarjeta PRIMARY KEY (idTarjeta)
 );
 create table Recarga(
 	idRecarga INT not null auto_increment,
-	DNI INT UNSIGNED,
+	Dni INT UNSIGNED,
 	idTarjeta INT NOT NULL,
 	FechayHora DATETIME,
 	MontoRecargado DECIMAL(7,2),

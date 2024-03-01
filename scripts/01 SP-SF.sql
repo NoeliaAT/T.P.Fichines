@@ -27,13 +27,13 @@ END $$
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaRecarga $$
 CREATE PROCEDURE altaRecarga	(unidRecarga INT,
-								unDNI INT,
+								unDni INT,
 								unidTarjeta INT,
 								unaFechayHora DATETIME,
 								unMontoRecargado INT)
 BEGIN
-	INSERT INTO Recarga (idRecarga, DNI, idTarjeta, FechayHora, MontoRecargado)
-				VALUES (unidRecarga, unDNI, unidTarjeta, unaFechayHora, unMontoRecargado);
+	INSERT INTO Recarga (idRecarga, Dni, idTarjeta, FechayHora, MontoRecargado)
+				VALUES (unidRecarga, unDni, unidTarjeta, unaFechayHora, unMontoRecargado);
 END $$ 
 
 
@@ -55,16 +55,16 @@ END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS registraCliente $$
-CREATE PROCEDURE registrarCliente (unDNI INT,
+CREATE PROCEDURE registrarCliente (unDni INT,
 									unnombre VARCHAR(45),
 									unapellido VARCHAR(45),
 									unMail VARCHAR(45),
 									unatarjeta INT,
 									unaPass VARCHAR(45))
 BEGIN
-	SELECT DNI, nombre, apellido
+	SELECT Dni, nombre, apellido
 	FROM Cliente
-	WHERE DNI = unDNI
+	WHERE Dni = unDni
 	AND pass = SHA2(unaPAss, 256);
 END $$
 
@@ -75,21 +75,21 @@ END $$
 -- 4) Se pide hacer el SF ‘RecaudacionPara’ que reciba por parámetro un identificador de fichin, se debe devolver la ganancia que tuvo entre esas 2 fechas (inclusive).--
 
 DELIMITER $$
-DROP FUNCTION IF EXISTS recaudaciónPara $$
-CREATE FUNCTION recaudaciónPara (unidFichin INT, fechaInicio DATE, fechaFin DATE)
+DROP FUNCTION IF EXISTS recaudacionPara $$
+CREATE FUNCTION recaudacionPara (unidFichin INT, fechaInicio DATE, fechaFin DATE)
 	RETURNS INT READS SQL DATA
 BEGIN
-	DECLARE Recaudación INT ;
-	SELECT SUM(Gasto) INTO Recaudación
+	DECLARE recaudacion INT ;
+	SELECT SUM(Gasto) INTO recaudacion
 	FROM JuegaFichin
 	WHERE idFichin = idFichin
 	AND FechayHora BETWEEN fechaInicio AND fechaFin;
     
-    IF Recaudación IS NULL THEN
-		SET Recaudación = 000;
+    IF recaudacion IS NULL THEN
+		SET recaudacion = 0;
 	END IF;
     
-	RETURN Recaudación;
+	RETURN recaudacion;
 END $$
 
 -- necesito idfinchin
@@ -101,12 +101,12 @@ END $$
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS Gastos $$
-CREATE PROCEDURE Gastos (unDNI INT)
+CREATE PROCEDURE Gastos (unDni INT)
 BEGIN
 	SELECT JuegaFichin.FechayHora, Fichin.nombre, JuegaFichin.Gasto
     FROM JuegaFichin
     INNER JOIN Fichin ON JuegaFichin.idFichin = Fichin.idFichin
-    WHERE JuegaFichin.DNI = DNI
+    WHERE JuegaFichin.Dni = Dni
     ORDER BY JuegaFichin.FechayHora DESC;
 END $$
 

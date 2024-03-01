@@ -4,36 +4,37 @@ public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
-    [InlineData(321, 36)]
-    public void TraerTarjeta(int idTarjeta, decimal saldo)
+    [InlineData(321, 12345, 36)]
+    public void TraerTarjeta(int idTarjeta, uint dni, decimal saldo)
     {
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotEmpty(tarjetas);
-        Assert.Contains(tarjetas, t => t.Saldo == 36 && t.IdTarjeta == 321);
+        Assert.Contains(tarjetas, t => t.Saldo == saldo && t.Dni == dni && t.IdTarjeta == idTarjeta);
     }
 
     [Fact]
 
     public void AltaTarjeta()
     {
-        int idTarjeta = 02;
+        int idTarjeta = 2;
+        uint dni = 12346;
         decimal saldo = 10;
 
         //esto es instanciar//
         var nueva02 = new Tarjeta()
         {
             IdTarjeta = idTarjeta,
+            Dni = dni,
             Saldo = saldo
         };
 
         Ado.AltaTarjeta(nueva02);
-        Assert.NotEqual(02, 10);
 
         var tarjetas = Ado.ObtenerTarjetas();
 
         Assert.NotNull(tarjetas);
-        Assert.Contains(tarjetas, t=> t.Saldo ==10 && t.IdTarjeta== 02);
+        Assert.Contains(tarjetas, t=> t.Saldo == saldo && t.Dni == dni && t.IdTarjeta== idTarjeta);
     }
 }
 
