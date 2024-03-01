@@ -4,7 +4,7 @@ public class TestAdoTarjeta : TestAdo
 
 {
     [Theory]
-    [InlineData(321, 12345)]
+    [InlineData(321, 54321)]
     public void TraerTarjeta(int idTarjeta, uint dni)
     {
         var tarjetas = Ado.ObtenerTarjetas();
